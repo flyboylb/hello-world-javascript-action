@@ -58,7 +58,10 @@ function getNextDateVersion(tagprefix, previousVersionTags) {
         newVersionParts[3]++;
     }
     let versionnumber = newVersionParts.join(".");
-    let outputvar = `${versionnumber}-${versionnumber}`;
+    console.log()
+    console.log(`Tag prefix in getnextDateV is ${tagprefix}`);
+    let outputvar = `${tagprefix}-${versionnumber}`;
+
     return outputvar;
 }
 

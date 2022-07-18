@@ -13512,8 +13512,9 @@ function getDateParts() {
     let year = date.getUTCFullYear().toString().substr(-2) * 1;
     let month = date.getUTCMonth() + 1;
     let day = date.getUTCDay() + 1;
-    
+    let sdf = date.getDate();
     console.log(`Today day is: ${day}`);
+    console.log(`With GEtDate, day is: ${sdf}`);
     return { year, month, day };
 }
 

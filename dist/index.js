@@ -13436,7 +13436,7 @@ async function getCurrentTag() {
     return currentTags.map(processVersion).filter(Boolean)[0];
 }
 
-async function getNextVersionTag({ tagprefix } , { prerelease }) {
+async function getNextVersionTag( tagprefix , { prerelease }) {
     let allTags = await execGetOutput("git tag");
 
     let previousVersionTags = allTags
@@ -13446,10 +13446,10 @@ async function getNextVersionTag({ tagprefix } , { prerelease }) {
 
     return prerelease
         ? getPrereleaseVersion(previousVersionTags, prerelease)
-        : { tagprefix }+ getNextDateVersion(previousVersionTags);
+        :  getNextDateVersion(tagprefix, previousVersionTags);
 }
 
-function getNextDateVersion(previousVersionTags) {
+function getNextDateVersion(tagprefix, previousVersionTags) {
     let { year, month, day } = getDateParts();
     let newVersionParts = [`${year}`, `${month}`, `${day}`, 0];
 
@@ -13457,7 +13457,7 @@ function getNextDateVersion(previousVersionTags) {
         newVersionParts[3]++;
     }
 
-    return newVersionParts.join(".");
+    return tagprefix+newVersionParts.join(".");
 }
 
 function getPrereleaseVersion(previousVersionTags, prerelease) {

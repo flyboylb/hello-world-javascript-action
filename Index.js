@@ -1,4 +1,4 @@
-const { setFailed, getInput, setOutput } = require("@actions/core");
+const { setFailed, getInput, setOutput, core } = require("@actions/core");
 const { context } = require("@actions/github");
 const { exec } = require("@actions/exec");
 const semver = require("semver");
@@ -19,7 +19,7 @@ async function run() {
 
         let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
         console.log(`Next version is: ${nextVersion}`);
-
+        core.exportVariable("release_tag", newReleaseTag);
       
     } catch (error) {
         setFailed(error.message);

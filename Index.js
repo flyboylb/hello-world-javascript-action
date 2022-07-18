@@ -17,9 +17,9 @@ async function run() {
             return;
         }
 
-        let nextVersion = await getNextVersionTag(tagprefix,{ prerelease });
+        let nextVersion = getNextVersionTag(tagprefix,{ prerelease });
         console.log(`nextv is ${nextVersion}`);
-        core.exportVariable("release_tag", nextVersion);
+        core.exportVariable('release_tag', nextVersion);
       
     } catch (error) {
         setFailed(error.message);
@@ -32,13 +32,13 @@ async function getCurrentTag() {
     await exec("git fetch --tags");
 
     // First Check if there is already a release tag at the head...
-    let currentTags = await execGetOutput(`git tag --points-at ${context.sha}`);
+    let currentTags =  execGetOutput(`git tag --points-at ${context.sha}`);
 
     return currentTags.map(processVersion).filter(Boolean)[0];
 }
 
-async function getNextVersionTag( tagprefix , { prerelease }) {
-    let allTags = await execGetOutput("git tag");
+ function getNextVersionTag( tagprefix , { prerelease }) {
+    let allTags = execGetOutput("git tag");
 
     let previousVersionTags = allTags
         .map(processVersion)
@@ -124,7 +124,7 @@ function getDateParts() {
     return { year, month, day };
 }
 
-async function execGetOutput(command) {
+function execGetOutput(command) {
     let collectedOutput = [];
     let collectedErrorOutput = [];
 
@@ -142,7 +142,7 @@ async function execGetOutput(command) {
     };
 
     try {
-        await exec(command, [], options);
+        exec(command, [], options);
     } catch (error) {
         throw new Error(collectedErrorOutput);
     }

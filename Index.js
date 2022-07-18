@@ -18,8 +18,8 @@ async function run() {
         }
 
         let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
-        console.log(`Next version is: ${nextVersion}`);
-        core.exportVariable("release_tag", newReleaseTag);
+        
+        core.exportVariable("release_tag", nextVersion);
       
     } catch (error) {
         setFailed(error.message);
@@ -58,7 +58,7 @@ function getNextDateVersion(tagprefix, previousVersionTags) {
         newVersionParts[3]++;
     }
 
-    return tagprefix+newVersionParts.join(".");
+    return string.concat(tagprefix,newVersionParts.join("."));
 }
 
 function getPrereleaseVersion(previousVersionTags, prerelease) {

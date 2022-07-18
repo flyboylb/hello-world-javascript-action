@@ -13404,7 +13404,7 @@ const semver = __nccwpck_require__(1168);
 
 async function run() {
     try {
-      
+        let prerelease = getInput("prerelease", { required: false });
         let currentVersionTag = await getCurrentTag();
 
         if (currentVersionTag) {

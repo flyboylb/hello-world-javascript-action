@@ -5,7 +5,7 @@ const semver = require("semver");
 
 async function run() {
     try {
-      
+        let prerelease = getInput("prerelease", { required: false });
         let currentVersionTag = await getCurrentTag();
 
         if (currentVersionTag) {

@@ -13397,7 +13397,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const { setFailed, getInput, setOutput } = __nccwpck_require__(8288);
+const { setFailed, getInput, setOutput, core } = __nccwpck_require__(8288);
 const { context } = __nccwpck_require__(2957);
 const { exec } = __nccwpck_require__(7335);
 const semver = __nccwpck_require__(1168);
@@ -13405,7 +13405,7 @@ const semver = __nccwpck_require__(1168);
 async function run() {
     try {
         let prerelease = getInput("prerelease", { required: false });
-
+        let mine = "";
         let tagprefix = getInput("buildtagprefix", { required: true });
 
         let currentVersionTag = await getCurrentTag();
@@ -13418,7 +13418,7 @@ async function run() {
 
         let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
         console.log(`Next version is: ${nextVersion}`);
-
+        core.exportVariable("release_tag", newReleaseTag);
       
     } catch (error) {
         setFailed(error.message);

@@ -13417,7 +13417,7 @@ async function run() {
         }
 
         let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
-        console.log(`Next version: ${nextVersion}`);
+        console.log(`Next version is: ${nextVersion}`);
 
       
     } catch (error) {

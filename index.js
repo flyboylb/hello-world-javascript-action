@@ -6,7 +6,7 @@ const semver = require("semver");
 async function run() {
     try {
         let prerelease = getInput("prerelease", { required: false });
-
+        let mine = "";
         let tagprefix = getInput("buildtagprefix", { required: true });
 
         let currentVersionTag = await getCurrentTag();

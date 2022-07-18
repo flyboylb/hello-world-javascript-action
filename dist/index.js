@@ -8833,6 +8833,14 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 7200:
+/***/ ((module) => {
+
+module.exports = eval("require")("@actions/exec");
+
+
+/***/ }),
+
 /***/ 9870:
 /***/ ((module) => {
 
@@ -9004,7 +9012,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8288);
 const github = __nccwpck_require__(2957);
-
+const { exec } = __nccwpck_require__(7200);
 try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');

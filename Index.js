@@ -52,7 +52,7 @@ function getNextDateVersion(previousVersionTags) {
     let newVersionParts = [`${year}`, `${month}`, `${day}`, 0];
 
     while (_tagExists(newVersionParts, previousVersionTags)) {
-        newVersionParts[2]++;
+        newVersionParts[3]++;
     }
 
     return newVersionParts.join(".");

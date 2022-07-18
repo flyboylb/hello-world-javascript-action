@@ -13416,7 +13416,7 @@ async function run() {
             return;
         }
 
-        let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
+        let nextVersion = await getNextVersionTag(tagprefix,{ prerelease });
         
         core.exportVariable("release_tag", nextVersion);
       
@@ -13446,7 +13446,7 @@ async function getNextVersionTag( tagprefix , { prerelease }) {
 
     return prerelease
         ? getPrereleaseVersion(previousVersionTags, prerelease)
-        :  getNextDateVersion(tagprefix, previousVersionTags);
+        : getNextDateVersion(tagprefix, previousVersionTags);
 }
 
 function getNextDateVersion(tagprefix, previousVersionTags) {

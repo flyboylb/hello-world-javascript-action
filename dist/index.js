@@ -13405,6 +13405,9 @@ const semver = __nccwpck_require__(1168);
 async function run() {
     try {
         let prerelease = getInput("prerelease", { required: false });
+
+        let tagprefix = getInput("buildtagprefix", { required: true });
+
         let currentVersionTag = await getCurrentTag();
 
         if (currentVersionTag) {
@@ -13413,7 +13416,7 @@ async function run() {
             return;
         }
 
-        let nextVersion = await getNextVersionTag({ prerelease });
+        let nextVersion = await getNextVersionTag({tagprefix},{ prerelease });
         console.log(`Next version: ${nextVersion}`);
 
       
@@ -13433,7 +13436,7 @@ async function getCurrentTag() {
     return currentTags.map(processVersion).filter(Boolean)[0];
 }
 
-async function getNextVersionTag({ prerelease }) {
+async function getNextVersionTag({ tagprefix } , { prerelease }) {
     let allTags = await execGetOutput("git tag");
 
     let previousVersionTags = allTags
@@ -13443,7 +13446,7 @@ async function getNextVersionTag({ prerelease }) {
 
     return prerelease
         ? getPrereleaseVersion(previousVersionTags, prerelease)
-        : getNextDateVersion(previousVersionTags);
+        : { tagprefix }+ getNextDateVersion(previousVersionTags);
 }
 
 function getNextDateVersion(previousVersionTags) {

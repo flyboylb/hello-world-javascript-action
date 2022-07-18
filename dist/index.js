@@ -13407,7 +13407,7 @@ async function run() {
         let prerelease = getInput("prerelease", { required: false });
         let mine = "";
         let tagprefix = getInput("buildtagprefix", { required: true });
-
+        console.log(`tagprefix is ${tagprefix}`);
         let currentVersionTag = await getCurrentTag();
 
         if (currentVersionTag) {
@@ -13456,8 +13456,9 @@ function getNextDateVersion(tagprefix, previousVersionTags) {
     while (_tagExists(newVersionParts, previousVersionTags)) {
         newVersionParts[3]++;
     }
-
-    return string.concat(tagprefix,newVersionParts.join("."));
+    let versionnumber = newVersionParts.join(".");
+    let outputvar = `${versionnumber}-${versionnumber}`;
+    return outputvar;
 }
 
 function getPrereleaseVersion(previousVersionTags, prerelease) {

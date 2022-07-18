@@ -13447,8 +13447,8 @@ async function getNextVersionTag({ prerelease }) {
 }
 
 function getNextDateVersion(previousVersionTags) {
-    let { year, month } = getDateParts();
-    let newVersionParts = [`${year}`, `${month}`, 0];
+    let { year, month, day } = getDateParts();
+    let newVersionParts = [`${year}`, `${month}`, `${day}`, 0];
 
     while (_tagExists(newVersionParts, previousVersionTags)) {
         newVersionParts[2]++;
@@ -13498,7 +13498,7 @@ function processVersion(version) {
         version: parsedVersion,
     } = semver.parse(version);
 
-    let { year: currentYear, month: currentMonth } = getDateParts();
+    let { year: currentYear, month: currentMonth, day: currentDay } = getDateParts();
 
     if (major !== currentYear || minor !== currentMonth) {
         return false;
@@ -13511,8 +13511,8 @@ function getDateParts() {
     let date = new Date();
     let year = date.getUTCFullYear().toString().substr(-2) * 1;
     let month = date.getUTCMonth() + 1;
-
-    return { year, month };
+    let day = date.getUTCDay() + 1;
+    return { year, month, day };
 }
 
 async function execGetOutput(command) {

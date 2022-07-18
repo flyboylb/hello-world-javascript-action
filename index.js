@@ -18,7 +18,7 @@ async function run() {
         }
 
         let nextVersion = await getNextVersionTag(tagprefix,{ prerelease });
-        
+        console.log(`nextv is ${nextVersion}`);
         core.exportVariable("release_tag", nextVersion);
       
     } catch (error) {

@@ -19,7 +19,8 @@ function run() {
 
         let nextVersion = getNextVersionTag(tagprefix,{ prerelease });
         console.log(`nextv is ${nextVersion}`);
-        core.exportVariable('release_tag', nextVersion);
+        core.setOutput("version", nextVersion);
+        
       
     } catch (error) {
         setFailed(error.message);

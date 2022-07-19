@@ -13412,7 +13412,7 @@ function run() {
 
         if (currentVersionTag) {
             console.log(`Already at version ${currentVersionTag}, skipping...`);
-            setOutput("version", currentVersionTag);
+            core.setOutput("version", currentVersionTag);
             return;
         }
 
@@ -13459,9 +13459,9 @@ function getNextDateVersion(tagprefix, previousVersionTags) {
     }
     let versionnumber = newVersionParts.join(".");
     console.log()
-    console.log(`Tag prefix in getnextDateV is ${tagprefix}`);
+   
     let outputvar = `${tagprefix}-${versionnumber}`;
-
+    console.log(`outputvar in getnextDateV is ${outputvar}`);
     return outputvar;
 }
 

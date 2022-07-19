@@ -1,0 +1,13 @@
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  buildtagprefix:  # id of input
+    description: 'The solution being built (Dashboard.Server or Dashboard.Web)'
+    required: true
+    default: 'Dashboard.Server'
+outputs:
+  version: # id of output
+    description: 'The version'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

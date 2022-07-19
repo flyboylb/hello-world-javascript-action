@@ -1,13 +1,13 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  buildtagprefix:  # id of input
-    description: 'The solution being built (Dashboard.Server or Dashboard.Web)'
+  who-to-greet:  # id of input
+    description: 'Who to greet'
     required: true
-    default: 'Dashboard.Server'
+    default: 'World'
 outputs:
-  version: # id of output
-    description: 'The version'
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'index.js'

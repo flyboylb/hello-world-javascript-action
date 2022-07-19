@@ -13402,13 +13402,13 @@ const { context } = __nccwpck_require__(2957);
 const { exec } = __nccwpck_require__(7335);
 const semver = __nccwpck_require__(1168);
 
-async function run() {
+function run() {
     try {
         let prerelease = getInput("prerelease", { required: false });
         let mine = "";
         let tagprefix = getInput("buildtagprefix", { required: true });
         console.log(`tagprefix is ${tagprefix}`);
-        let currentVersionTag = await getCurrentTag();
+        let currentVersionTag = getCurrentTag();
 
         if (currentVersionTag) {
             console.log(`Already at version ${currentVersionTag}, skipping...`);
@@ -13427,8 +13427,8 @@ async function run() {
 
 run();
 
-async function getCurrentTag() {
-    await exec("git fetch --tags");
+function getCurrentTag() {
+    exec("git fetch --tags");
 
     // First Check if there is already a release tag at the head...
     let currentTags =  execGetOutput(`git tag --points-at ${context.sha}`);

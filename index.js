@@ -13,7 +13,7 @@ function run() {
 
         if (currentVersionTag) {
             console.log(`Already at version ${currentVersionTag}, skipping...`);
-            setOutput("version", currentVersionTag);
+            core.setOutput("version", currentVersionTag);
             return;
         }
 
